@@ -10,13 +10,12 @@ class Usuario {
   //getter padrão
   String get senha => _senha;
 
-  //setter padrão
   set senha(String senha) {
     if (alteracao) {
       _senha = senha;
-      print('Sucesso: Senha alterada');
+      print('Sucesso: Senha altera');
     } else {
-      print('Erro: Acesso Negado');
+      print('Erro: Acesso negado ');
     }
   }
 }

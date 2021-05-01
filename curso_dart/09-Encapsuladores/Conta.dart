@@ -1,5 +1,7 @@
 import 'dart:math';
 
+
+
 class Conta {
   bool alterarLimite = false;
   late int _numeroConta;
@@ -11,7 +13,7 @@ class Conta {
     this._nome = nome;
     this._numeroConta = Random().nextInt(9999);
     print(
-        'Conta numero: "${_numeroConta}" Titular: "${_nome}" Criada com sucesso');
+        'Conta numero: "${_numeroConta}" Titular: ${_nome} Criada com sucesso!');
   }
 
   Conta.vip(String nome, {double limite = 10000}) {
@@ -19,27 +21,27 @@ class Conta {
     this._limite = limite;
     this._nome = nome;
     this._numeroConta = Random().nextInt(9999);
-    print(
-        'Conta numero: "${_numeroConta}" Titular: "${_nome}" Criada com sucesso');
+    print('Conta numero: ${_numeroConta} Titular: ${_nome}');
   }
 
   //getter padrão
-  int get numeroConta => this._numeroConta;
+  int get numeroConta => this.numeroConta;
 
   double get saldo => this._saldo;
 
+  //setter padrão
   set limite(double limite) {
     if (alterarLimite) {
       this._limite = limite;
-      print('Limite alterado para o valor: ${(_limite).toStringAsFixed(2)}');
+      print('Limmite alterado para o valor: ${(_limite).toStringAsFixed(2)}');
     } else {
-      print('Permissão negada! Alteração: Limite do titular');
+      print('Permissão negada! Ateração: Limite do titular');
     }
   }
 
-  // getter e setter costumizáveis
-  String get informacao =>
-      'Titular: ${_nome} NºConta: ${_numeroConta} Saldo atualizado: ${(_saldo).toStringAsFixed(2)} ';
+  //getter e setter costumizaveis
+  String get infomacao =>
+      'Titular: ${_nome} Nº Conta: ${_numeroConta} Saldo atualizado:${(_saldo).toStringAsFixed(2)} ';
 
   set deposito(double deposito) {
     if (deposito > 0) {
@@ -54,13 +56,13 @@ class Conta {
       if (saque <= _saldo) {
         this._saldo -= saque;
         print(
-            'saque valor: ${(_saldo).toStringAsFixed(2)} Saldo Atualizado: ${(_saldo).toStringAsFixed(2)}');
+            'Saque valor: ${(saque).toStringAsFixed(2)} Saldo atualizado: ${(_saldo).toStringAsFixed(2)} ');
       } else {
         print(
-            'Saldo valor: ${(_saldo).toStringAsFixed(2)} insuficiente para saque de ${(saque).toStringAsFixed(2)}');
+            'Saldo valor: ${(_saldo).toStringAsFixed(2)} insuficiente para saque de ${(saque).toStringAsFixed(2)} ');
       }
     } else {
-      print('limite para saque: ${(_limite).toStringAsFixed(2)}');
+      print('Limite para saque: ${(_limite).toStringAsFixed(2)}');
     }
   }
 }
