@@ -1,9 +1,13 @@
 /*
 -Final 
-Inicializada apenas quando acessada em tempo de execução, dee ser declarada!
+Inicializada apenas quando acessada em tempo de execução, deve ser declarada!
 Em coleções final nem todo o conteúdo será final 
 
 */
+
+import 'dart:ffi';
+
+import 'Pessoa.dart';
 
 void main() {
   print('10.1) Modificadores Final\n');
@@ -19,4 +23,10 @@ void main() {
     final indice = i;
     print('contagem: $indice');
   }
+
+  var pessoa = Pessoa('Dandy', ['Lela', 'Doug']);
+  pessoa.nome = 'Maria';
+  // pessoa.familiares = [];// não pode ser mudado pois está definido como final
+  print('nome: ${pessoa.nome} familiares: ${pessoa.familiares}');
 }
+
