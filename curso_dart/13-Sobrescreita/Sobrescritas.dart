@@ -11,6 +11,7 @@
 
  */
 
+import 'Abelha.dart';
 import 'Cao.dart';
 
 void main() {
@@ -26,4 +27,10 @@ void main() {
   cao.reproduzir();
   cao.acao();
   print('${cao.nome} ${cao.docil ? 'está amigável' : 'não está amigavel'}');
+
+  var abelha = Abelha.brasileira('2', 'blue');
+  abelha.reproduzir();
+  print('tamanho: ${abelha.tamanho} cor: ${abelha.cor}');
+  print(
+      '${abelha.cor} ${abelha.docil ? 'está amigável' : 'não está amigável'}');
 }
