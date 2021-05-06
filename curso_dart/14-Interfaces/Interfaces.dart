@@ -1,63 +1,24 @@
-/* Conceito
--Interfaces são modelos para implementar metodos a atribuidos em nossas classes
+/*
+*Conceito 
+-Interfaces são modelos para implementar metodos e atribuir em nossas classes
 
-*Regras 
--Ao implementar uma interface devemos utilizar todos os metodos e atributos
--No dart não tem sintaxa para interfaces, pode ser uma classe concreta ou abstrata!
--Pode implementar mais de uma interface e deve sobrescrever todos metodos e atrivbutos
+* Regras
+- Ao implementar uma interface devemos utilizar todos os metodos e atributos
+-No dart não tem  sintaxe para interface, pode ser uma classe concreta ou abstrata!
+-Pode implementar mais de uma interface e deve sobreescrever todos metodos e atributos!
  */
 
-abstract class Cidadao {
-  String nome;
-  Cidadao(this.nome);
-
-  void objtivosPessoais();
-
-  void direitosDeveres() {
-    print('Todo cidadão tem direitos e deveres');
-  }
-}
-
-abstract class Presidenciaveis {
-  late String partido;
-  late String ideologia;
-
-  void ideologiaPolitica();
-}
-
-class Postagem {
-  late String postagem;
-
-  void escreverPostagem() {
-    print('');
-  }
-}
-
-class Candidato extends Cidadao implements Postagem {
-  Candidato(String nome) : super(nome);
-  late String objetivo;
-
-  @override
-  void objtivosPessoais() {
-    print('$nome tem o o objetivo de $objetivo');
-  }
-
-// INTERFACES
-  @override
-  late String postagem;
-
-  @override
-  void escreverPostagem() {
-    print('Postagem de $nome no facebook: $postagem');
-  }
-}
+import 'Candidato.dart';
 
 void main() {
-  print('15.0) Interfaces\n');
+  print('15.0) Interface\n');
 
-  var ciro = Candidato('Ciro');
-  ciro.objetivo = 'Ganhar as Eleição';
-  ciro.objtivosPessoais();
-  ciro.postagem = 'Vou acabar com a corrupção no Brasil';
-  ciro.escreverPostagem();
+  var ciro =
+      Candidato('Ciro Gomes', ideologia: 'Centro Esquerda', partido: 'PDT');
+  ciro
+    ..objetivo = 'Ganhar eleição'
+    ..objetivoPessoais
+    ..postagem = 'Vou acabar com a corrupção no Brasil'
+    ..escreverPostagem()
+    ..ideologiaPolitica();
 }
