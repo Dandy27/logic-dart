@@ -15,27 +15,24 @@
  - Restringi o uso do mixin as classes que estendem ou implementam a classe declarada
  */
 
+void main() {
+  print('14.0) Interface\n');
 
-// CLASSE ABSTRATA
-abstract class Cidadao {
-  String nome;
-
-  Cidadao(this.nome);
-  void objetivoPessoais();
-
-  void direitosDeveres() {
-    print('Todo cidadão tem direitos e deveres');
-  }
+  var ciro =
+      Candidato('Ciro Gomes', ideologia: 'Centro Esquerda', partido: 'PDT');
+  ciro
+    ..objetivo = 'Ganhar eleição'
+    ..objetivoPessoais
+    ..postagem = 'Vou acabar com a corrupção no Brasil'
+    ..escreverPostagem()
+    ..ideologiaPolitica()
+    ..depositar = 400000..prestacaoContas();
 }
 
-//MIXINS
-mixin Elegivel on Cidadao{
-  
-}
-
-
-//CLASSE CONCRETA
-class Candidato extends Cidadao implements Postagem, Presidenciavel {
+// CLASSE CONCRETA
+class Candidato extends Cidadao
+    with Elegivel, Conta
+    implements Postagem, Presidenciavel {
   late String objetivo;
 
   Candidato(String nome, {required this.ideologia, required this.partido})
@@ -48,7 +45,7 @@ class Candidato extends Cidadao implements Postagem, Presidenciavel {
     print('$nome tem o objetivo de $objetivo');
   }
 
-  //interfaces
+// interfaces
   @override
   late String postagem;
 
@@ -68,8 +65,33 @@ class Candidato extends Cidadao implements Postagem, Presidenciavel {
     print(
         '$nome é candidato com ideologia de $ideologia pelo partido $partido');
   }
+
+  @override
+  void prestacaoContas() {
+    elegivel = super.declaracaoRenda();
+    if (elegivel) {
+      print(
+          'Candidato $nome passou na prestação de contas\nAutorizado a concorrer nas eleições de 2022');
+    } else {
+      print(
+          'Candidato $nome foi barrado na prestação de contas!\nSaldo $saldo excede a renda declarada para Presidente ');
+    }
+  }
 }
-// INTERFACES
+
+//CLASSE ABSTRATA
+abstract class Cidadao {
+  String nome;
+
+  Cidadao(this.nome);
+  void objetivoPessoais();
+
+  void direitosDeveres() {
+    print('Todo cidadão tem direitos e deveres');
+  }
+}
+
+//INTERFACES
 class Postagem {
   late String postagem;
 
@@ -78,7 +100,6 @@ class Postagem {
   }
 }
 
-
 abstract class Presidenciavel {
   late String partido;
   late String ideologia;
@@ -86,17 +107,18 @@ abstract class Presidenciavel {
   void ideologiaPolitica();
 }
 
+//MIXIN
 
+mixin Elegivel on Cidadao {
+  bool elegivel = false;
+  void prestacaoContas();
+}
 
-void main() {
-  print('15.0) Mixin\n');
+abstract class Conta {
+  late double _saldo;
+  double salario = 33000;
+  get saldo => _saldo;
+  set depositar(double valor) => this._saldo = valor;
 
-  var ciro =
-      Candidato('Ciro Gomes', ideologia: 'Centro Esquerda', partido: 'PDT');
-  ciro
-    ..objetivo = 'Ganhar eleição'
-    ..objetivoPessoais
-    ..postagem = 'Vou acabar com a corrupção no Brasil'
-    ..escreverPostagem()
-    ..ideologiaPolitica();
+  bool declaracaoRenda() => _saldo / 12 < salario;
 }
