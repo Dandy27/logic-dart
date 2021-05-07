@@ -119,9 +119,25 @@ listMap() {
   print(doubleMapeados);
 }
 
+///
+/// * Every;
+///  - Faz o teste em todos elemntos com o operador lógico '&&' retornado (true ou false);
+///
+listEvery() {
+  print('\n16.1.3 List Every');
+
+  List<int> interios = [0, 1, 2, 3, 4, 5];
+  bool resultado = interios.every((e) => e >= 0);
+  print(resultado);
+  List<String> textos = List.from(['Dandy', 'Lela', 'Doug']);
+  resultado = textos.every((e) => e.contains('e'));
+  print(resultado);
+}
+
 void main() {
   print('16.1) Coleções');
   listForEach();
   listExpand();
   listMap();
+  listEvery();
 }
