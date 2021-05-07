@@ -55,7 +55,41 @@ listForEach() {
   listaPreco.forEach((e) => print('foreach: $e'));
 }
 
+///
+///* Expand;
+/// - Cria uma nova lista expandindo ou concatenando os elementos
+
+listExpand() {
+  print('\n16.1.1) List Expand\n');
+
+  var lista = [
+    [1, 2],
+    [3, 4]
+  ];
+
+  List<dynamic> listaFlat = lista.expand((element) => element).toList();
+  List<dynamic> listaDuplicada = listaFlat.expand((e) => [e, e]).toList();
+  print('listaFlat: $listaFlat \nlistaDuplicada: $listaDuplicada');
+
+  List<num> numeros = [1, 2.5, 5, 7.5, 10];
+  List<int> inteiros = [1, 5, 10];
+  List<double> doubles = [2.5, 7.25];
+  List<dynamic> ListaDinamica = [1];
+  print('$ListaDinamica');
+  print(ListaDinamica = [1, 5, 10] + [2, 7]);
+  print(ListaDinamica = []..addAll(inteiros)..addAll(doubles));
+
+  print(ListaDinamica = [0, ...inteiros, 15]); // operador spread(espalhar)
+  print(ListaDinamica = [
+    ...[],
+    ...inteiros,
+    if (doubles is List<double>) ...doubles
+  ]);
+  print(ListaDinamica = [...[], for(var numero in numeros)  numero]);
+}
+
 void main() {
   print('16.1) Coleções');
   listForEach();
+  listExpand();
 }
