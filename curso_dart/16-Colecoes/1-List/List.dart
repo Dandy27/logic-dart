@@ -147,8 +147,66 @@ listWhere() {
   print(idade.whereType<int>());
   List<int> adultos = idade.where((int e) => e > 17).toList();
   var crianca = idade.singleWhere((int e) => e <= 12); // orElse
-  int menor = idade.lastWhere((e) => e.toString().startsWith('1') );
+  int menor = idade.lastWhere((e) => e.toString().startsWith('1'));
   print('adultos: $adultos adultos: $adultos criança: $crianca');
+}
+
+///
+///* Reduce:
+///- Compara os elementos da coleção retornando 1 unico elemento resultante;
+/// - Ao integrar com os elementos o indice 0 se torna o anterior, indice 1 se torna o atual
+///
+listReduce() {
+  print('\n16.1.5 List Reduce\n');
+
+  List<int> numerosPares = List.generate(6, (i) => i * 2);
+  print(numerosPares);
+  int resultado = numerosPares.reduce((anterior, atual) {
+    print('$anterior + $atual');
+
+    return anterior + atual;
+  });
+  print(resultado);
+
+  List<bool> boleanas = [true, false, !true, !false];
+  bool and = boleanas.reduce((anterior, atual) => anterior && atual);
+  bool or = boleanas.reduce((anterior, atual) => anterior || atual);
+  print('and $and or: $or');
+
+  List<int> idades = [23, 34, 67, 45, 89, 17];
+  int maisNovo =
+      idades.reduce((anterior, atual) => (anterior > atual) ? atual : anterior);
+  print(maisNovo);
+  int maisVelho =
+      idades.reduce((anterior, atual) => (anterior < atual) ? atual : anterior);
+  int media = idades.reduce((anterior, atual) => anterior + atual);
+  print(
+      'mais novo: $maisNovo mais velho: $maisVelho média: ${(media / idades.length).toStringAsFixed(2)}');
+}
+
+///
+///*Fold
+/// - Compara os elementos da coleção retornando 1 único elemento resultante!
+/// - O valor inicial se torna o anterior e o indice 0 se torna o atual
+///
+
+listFold() {
+  print('\n16.1.6) List Fold\n');
+
+  List<int> numerosPares = List.generate(6, (i) => i * 2);
+  print(numerosPares);
+  int valorInicial = 10;
+  int resultado = numerosPares.fold(valorInicial, (anterior, atual) {
+    print('$anterior + $atual');
+    return anterior + atual;
+  });
+  print('$resultado\n');
+  valorInicial = 30;
+  resultado = numerosPares.fold(valorInicial, (anterior, atual) {
+    print('$anterior - $atual');
+    return anterior - atual;
+  });
+  print(resultado);
 }
 
 void main() {
@@ -158,4 +216,6 @@ void main() {
   listMap();
   listEvery();
   listWhere();
+  listReduce();
+  listFold();
 }
