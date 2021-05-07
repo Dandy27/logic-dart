@@ -134,10 +134,28 @@ listEvery() {
   print(resultado);
 }
 
+///
+/// * Where
+///  - Filtra os elementos da coleção criando uma nova do mesmo tamano ou menor
+///
+
+listWhere() {
+  print('\n16.1.4) List Where\n');
+
+  List<int> idade = [36, 12, 18, 31, 17, 23];
+  print(idade.where((e) => e is int)); // retorno em Iterable
+  print(idade.whereType<int>());
+  List<int> adultos = idade.where((int e) => e > 17).toList();
+  var crianca = idade.singleWhere((int e) => e <= 12); // orElse
+  int menor = idade.lastWhere((e) => e.toString().startsWith('1') );
+  print('adultos: $adultos adultos: $adultos criança: $crianca');
+}
+
 void main() {
   print('16.1) Coleções');
   listForEach();
   listExpand();
   listMap();
   listEvery();
+  listWhere();
 }
