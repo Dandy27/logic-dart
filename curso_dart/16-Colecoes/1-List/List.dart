@@ -85,11 +85,43 @@ listExpand() {
     ...inteiros,
     if (doubles is List<double>) ...doubles
   ]);
-  print(ListaDinamica = [...[], for(var numero in numeros)  numero]);
+  print(ListaDinamica = [...[], for (var numero in numeros) numero]);
+}
+
+///
+///* Map:
+///- Transforma/seleciona os elementos de uma coleção criando uma nova do mesmo tamanho!
+///
+listMap() {
+  print('\n16.1.2) List Map\n');
+
+  List<String> frutas = ['Morango', 'Banana', 'Tomate'];
+  List<String> frutasMapeadas = frutas.map((e) => '$e é uma fruta').toList();
+  print(frutasMapeadas);
+
+  List<int> inteiros = [1, 5, 10];
+  var incrementar = (int e) => ++e;
+  final dobro = (int e) => e * 2;
+  // List<int> com operações os elementos deve ser setados "definidos" como int
+  List<int> inteirosMapeados = inteiros.map(incrementar).map(dobro).toList();
+  print(inteirosMapeados);
+
+  List<double> doubles = [2.75, 5.5, 7.25];
+  final triplo = (e) => e * 3;
+  final Function moeda =
+      (e) => 'R\$${e.toDouble().toStringAsFixed(2).replaceFirst('.', ',')}';
+  Function porcentagem(desconto) => (valor) => desconto * valor; // closure
+  List<dynamic> doubleMapeados = doubles
+      .map(triplo)
+      .map(porcentagem(0.9) as dynamic)
+      .map(moeda as dynamic)
+      .toList();
+  print(doubleMapeados);
 }
 
 void main() {
   print('16.1) Coleções');
   listForEach();
   listExpand();
+  listMap();
 }
