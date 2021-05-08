@@ -22,6 +22,7 @@ void main() {
 
   bool teste4 = verdadeiro && verdadeiro; // true
   bool teste5 = verdadeiro && falso; // ttrue
+  // ignore: dead_code
   bool teste6 = falso && falso; // false
 
   print(teste4);
@@ -29,6 +30,7 @@ void main() {
   print(teste6);
 
   print('Operador (||) ${teste1} - ${teste2} - ${teste3}');
+  // ignore: dead_code
   print('Operador (&&) ${true && true} - ${true && false} - ${falso && falso}');
   bool operacao = (1 <= 2) && (3 > 2);
   print(operacao);

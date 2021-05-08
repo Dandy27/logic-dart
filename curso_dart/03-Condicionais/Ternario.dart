@@ -2,10 +2,12 @@ main() {
   print('03.1) Ternario\n');
 
   if (!true)
+    // ignore: dead_code
     print('verdadeiro');
   else
     print('falso');
 
+  // ignore: dead_code
   print('${true ? 'Verdadeiro' : 'falso'}');
 
   int idade = 25;

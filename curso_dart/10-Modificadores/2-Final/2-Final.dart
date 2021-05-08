@@ -5,7 +5,6 @@ Em coleções final nem todo o conteúdo será final
 
 */
 
-import 'dart:ffi';
 
 import 'Pessoa.dart';
 
