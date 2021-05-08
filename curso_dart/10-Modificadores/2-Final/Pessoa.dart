@@ -1,5 +1,4 @@
 class Pessoa {
-  @override
    String nome;
   final dynamic familiares;
 

@@ -118,7 +118,26 @@ mapMap() {
   alunosEscola.forEach((e) => print('${e['nome']} ${e['nota']}'));
 }
 
+///
+///*Conceito:
+///-Every faz o teste em todos os elementos com o operador lógico (true ou false)
+///
+
+everyMap() {
+  print('\n16.4.2) Map Every\n');
+  List<Map<String, dynamic>> pessoas = [
+    {'nome': 'Renato', 'idade': 30},
+    {'nome': 'Luís', 'idade': 90},
+    {'nome': 'Miguel', 'idade': 100}
+  ];
+  print(pessoas.every((e) => e.containsKey('nome')));
+  print(pessoas.every((element) => element['idade'] < 17));
+  bool maiores = pessoas.every((element) => element['nome'].startsWith('L'));
+  print(maiores);
+}
+
 void main() {
   linkedHashMap();
   mapMap();
+  everyMap();
 }
