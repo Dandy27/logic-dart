@@ -10,7 +10,7 @@ linkedHashMap() {
   print('\n$nomesMap\n');
   nomesMap.forEach((key, value) => print('$key: $value'));
 
-  Map<String?, dynamic?> frutas = Map();
+  Map<String?, dynamic> frutas = Map();
   frutas['banana'] = 'amarela';
   frutas['banana'] = 'verde';
   frutas['goiaba'] = 'amarela';
@@ -125,7 +125,7 @@ mapMap() {
 
 everyMap() {
   print('\n16.4.2) Map Every\n');
-  List<Map<String, dynamic>> pessoas = [
+  List<Map<String, dynamic?>> pessoas = [
     {'nome': 'Renato', 'idade': 30},
     {'nome': 'Luís', 'idade': 90},
     {'nome': 'Miguel', 'idade': 100}
@@ -136,8 +136,46 @@ everyMap() {
   print(maiores);
 }
 
+///
+///* Conceito
+/// - Where filtra os elementos da coleção criando uma nova do mesmo tamanho ou menor
+///
+
+whereMap() {
+  print('16.4.3) Map Where');
+
+  List<Map<dynamic, dynamic>> produtos = [
+    {'nome': 'Notebook', 'preco': 5000, 'fragil': true},
+    {'nome': 'iPad', 'preco': 4999, 'fragil': true},
+    {'nome': 'iPhone', 'preco': 8999, 'fragil': true},
+    {'nome': 'Mouse', 'preco': 234, 'fragil': true},
+  ];
+  final fragil = (e) => e['fragil'] == true;
+  final nome = (e) => e['nome'];
+  List<dynamic> resultado = produtos.where(fragil).map(nome).toList();
+  print('Produtos Frageis: $resultado\n');
+  List<Map<String, dynamic>> pessoas = [
+    {'nome': 'Dandy', 'idade': 42},
+    {'nome': 'Doug', 'idade': 43},
+    {'nome': 'Lela', 'idade': 39}
+  ];
+  // List<Map<String, dynamic>> maiores =
+  //     pessoas.where((e) => e['idade'] >= 40).toList();
+  // Map<String, dynamic> comecaComL = pessoas.firstWhere(
+  //     (e) => e['nome'].startsWith('L')); // resolver / porque não aceita null'
+  // Map<String, dynamic> menores = pessoas.singleWhere((e ) => e['idade'] < 18, orElse: () => null );
+  final Function idades = (e ) => e['idades'];
+  final Function soma = (p, c) => p + c;
+  var media = (pessoas.map(idades).reduce(soma)) / pessoas.length;
+  ;
+  print(media);
+
+  // print('Maiores: $maiores \nMedia Idades: $idades\nNomes com L: $comecaComL');
+}
+
 void main() {
   linkedHashMap();
   mapMap();
   everyMap();
+  whereMap();
 }
