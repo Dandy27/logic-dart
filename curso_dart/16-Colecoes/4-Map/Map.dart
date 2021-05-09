@@ -163,14 +163,73 @@ whereMap() {
   //     pessoas.where((e) => e['idade'] >= 40).toList();
   // Map<String, dynamic> comecaComL = pessoas.firstWhere(
   //     (e) => e['nome'].startsWith('L')); // resolver / porque não aceita null'
-  // Map<String, dynamic> menores = pessoas.singleWhere((e ) => e['idade'] < 18, orElse: () => null );
-  final Function idades = (e ) => e['idades'];
-  final Function soma = (p, c) => p + c;
-  var media = (pessoas.map(idades).reduce(soma)) / pessoas.length;
-  ;
-  print(media);
+  // Map<String, dynamic> menores = pessoas.singleWhere((e ) => e['idade'] < 18 );
+  // final Function idades = (e) => e['idades'] ;
+  // final Function soma = (p, c) => p + c;
+  // var media = (pessoas.map(idades ).reduce(soma )) / pessoas.length;
+  // ;
+  // print(media);
 
   // print('Maiores: $maiores \nMedia Idades: $idades\nNomes com L: $comecaComL');
+}
+
+///
+///*Conceito:
+///- Reduce compara os elementos da coleção retornando 1 único elemento resultante!
+///- Ao interagir com os elemntos o indice 0 se torna o anterior, indice 1 torna-se o atual
+///
+
+reduceMap() {
+  print('\n16.4.4) Map Reduce\n');
+
+  List<Map<String, dynamic>> alunos = [
+    {'nome': 'Dandy', 'nota': 7.3, 'bolsistas': false},
+    {'nome': 'Doug', 'nota': 9.3, 'bolsistas': true},
+    {'nome': 'Nayla', 'nota': 9.3, 'bolsistas': true},
+    {'nome': 'Lela', 'nota': 8.3, 'bolsistas': false},
+  ];
+  final Function bolsistas = (e) => e['bolsistas'] as bool;
+  final Function nomes = (e) => e['nome'];
+  final Function notas = (e) => e['nota'];
+  final Function soma = (p, c) => p + c;
+
+  List<dynamic> bolsistasNomes =
+      alunos.where(bolsistas as dynamic).map(nomes as dynamic).toList();
+  List<Map<String, dynamic>> medias =
+      alunos.where(bolsistas as dynamic).toList();
+  var bolsistasMedia =
+      medias.map(notas as dynamic).reduce(soma as dynamic) / medias.length;
+  bool todosBolsistas =
+      alunos.map(bolsistas as dynamic).reduce((p, c) => p && c);
+  bool todosBolsista =
+      alunos.map(bolsistas as dynamic).reduce((p, c) => p || c);
+  print('Todos são Bolsistas? ${todosBolsistas ? 'sim' : 'nao'}');
+  print('Algum Bolsista ? ${todosBolsista ? 'sim' : 'nao'}');
+
+  print(
+      'Alunos bolsistas: $bolsistasNomes\nMedia notas: ${(bolsistasMedia).toStringAsFixed(2)}');
+
+  List<dynamic> funcionarios = [
+    {'nome': 'Dandy', 'genero': 'M', 'pais': 'Brasil', 'salario': 1200.00},
+    {'nome': 'Lela', 'genero': 'F', 'pais': 'Brasil', 'salario': 1000.00},
+    {'nome': 'Nayla', 'genero': 'F', 'pais': 'Brasil', 'salario': 1900.00},
+  ];
+  final Function brasileiros = (e) => e['pais'] == 'Brasil';
+  final Function mulheres = (e) => e['genero'] == 'F';
+  final Function menorSalario = (p, c) => p['salario'] < c['salario']
+      ? p['salario']
+      : c['salario']; // filtro para salario
+  final Function funcMenorSalario =
+      (p, c) => p['salario'] < c['salario'] ? p : c; // filtro para funcionários
+  List<dynamic> selecionados = funcionarios
+      .where(brasileiros as dynamic)
+      .where(mulheres as dynamic)
+      .toList();
+  print(selecionados.reduce(menorSalario as dynamic));
+  // print(selecionados);
+
+  Map<String, dynamic> funcionario = selecionados.reduce(funcMenorSalario as dynamic);
+  print('Funcionario: ${funcionario['nome']} salario: ${funcionario['salario']}');
 }
 
 void main() {
@@ -178,4 +237,5 @@ void main() {
   mapMap();
   everyMap();
   whereMap();
+  reduceMap();
 }
